@@ -10,11 +10,11 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
     /// <summary>
     /// Maps the variable names to their variables
     /// </summary>
-    private Dictionary<string, Variable> Variables = new();
+    internal Dictionary<string, Variable> Variables = new();
     /// <summary>
     /// Maps the default function names to their functions
     /// </summary>
-    private Dictionary<string, Function> Functions = BuiltinFunctions.GetDict();
+    internal Dictionary<string, Function> Functions = BuiltinFunctions.GetDict();
 
     /// <summary>
     /// Override visitor for literals
@@ -32,7 +32,7 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
             return int.Parse(i.GetText());
 
         if (context.DECIMAL() is { } d)
-            return decimal.Parse(d.GetText());
+            return double.Parse(d.GetText());
 
         throw new NotImplementedException("Unexpected variable type encountered.");
     }
@@ -68,19 +68,6 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
     }
 
     /// <summary>
-    /// Override visitor for identifier expressions
-    /// </summary>
-    /// <param name="context">The identifier expression context</param>
-    /// <returns>The value of the variable associated with <paramref name="context"/></returns>
-    /// <exception cref="DirectoryNotFoundException">Thrown when the identifier is not defined</exception>
-    public override object VisitIdentifierExpression([NotNull] blizzardParser.IdentifierExpressionContext context)
-    {
-        return Variables.ContainsKey(context.IDENTIFIER().GetText())
-            ? Variables[context.IDENTIFIER().GetText()].Value
-            : throw new DirectoryNotFoundException($"Unknown identifier `{context.IDENTIFIER().GetText()}`");
-    }
-
-    /// <summary>
     /// Override visitor for parentheses expressions
     /// </summary>
     /// <param name="context">The parentheses expression parser context</param>
@@ -105,10 +92,10 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
         if (LHS is string || RHS is string)
             throw new NotImplementedException($"Operation `{op}` doesn't exist on type `str`");
 
-        else if (LHS is decimal || RHS is decimal)
+        else if (LHS is double || RHS is double)
         {
-            var ld = decimal.Parse($"{LHS}");
-            var rd = decimal.Parse($"{RHS}");
+            var ld = double.Parse($"{LHS}");
+            var rd = double.Parse($"{RHS}");
 
             return op == "*" ? ld * rd : ld / rd;
         }
@@ -118,7 +105,7 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
             var li = int.Parse($"{LHS}");
             var ri = int.Parse($"{RHS}");
 
-            return op != "*" ? li * ri : li / ri;
+            return op == "*" ? li * ri : li / ri;
         }
 
         throw new NotImplementedException($"Cannot determine types for operation `{op}`");
@@ -143,10 +130,10 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
                 : throw new NotImplementedException("Operation `-` doesn't exist on type `str`");
         }
 
-        else if (LHS is decimal || RHS is decimal)
+        else if (LHS is double || RHS is double)
         {
-            var ld = decimal.Parse($"{LHS}");
-            var rd = decimal.Parse($"{RHS}");
+            var ld = double.Parse($"{LHS}");
+            var rd = double.Parse($"{RHS}");
 
             return op == "+" ? ld + rd : ld - rd;
         }
@@ -160,5 +147,18 @@ public class BlizzardVisitor : blizzardBaseVisitor<object>
         }
 
         throw new NotImplementedException($"Cannot determine types for operation `{op}`");
+    }
+    
+    /// <summary>
+    /// Override visitor for identifier expressions
+    /// </summary>
+    /// <param name="context">The identifier expression context</param>
+    /// <returns>The value of the variable associated with <paramref name="context"/></returns>
+    /// <exception cref="DirectoryNotFoundException">Thrown when the identifier is not defined</exception>
+    public override object VisitIdentifierExpression([NotNull] blizzardParser.IdentifierExpressionContext context)
+    {
+        return Variables.ContainsKey(context.IDENTIFIER().GetText())
+            ? Variables[context.IDENTIFIER().GetText()].Value
+            : throw new DirectoryNotFoundException($"Unknown identifier `{context.IDENTIFIER().GetText()}`");
     }
 }

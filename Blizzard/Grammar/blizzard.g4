@@ -5,11 +5,10 @@ grammar blizzard;
 //////////////////////////////////////////////////////////////////////////////////////////
 
 program: statement* EOF;
-statement: expression ';';
+statement: (expression | variableDeclaration) ';';
 
 expression
     : literal                           #literalExpression
-    | variableDeclaration               #variableDeclarationExpression
     | functionCall                      #functionCallExpression
     | '(' expression ')'                #parenthesesExpression
     | expression MUL_DIV expression     #MulDivExpression
@@ -30,7 +29,7 @@ functionCall: IDENTIFIER '(' (expression (',' expression)*)? ')';
 TYPE: 'str' | 'int' | 'dec';                // The valid variable types
 STRING: '"' ~'"'* '"';                      // Matches a string literal
 INTEGER: '-'? [1-9][0-9]*;                  // Matches an integer literal
-DECIMAL: INTEGER '.' [0-9]+;                // Matches a decimal literal
+DECIMAL: '-'? [0-9]* '.' [0-9]+;            // Matches a decimal literal
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;         // Name identifier for variables and functions
 MUL_DIV: '*' | '/';                         // The multiplication and division operators

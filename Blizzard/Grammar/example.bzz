@@ -12,7 +12,11 @@ dec res = age * 365.25 * 24 * salary;
 // Negative number test
 int neg = 3 + -5;
 
+// Parentheses test
+int paren = (3 + 5) * 2;
+
 /* Write out the data */
 WRITELN(name + " is " + age + " years old, and makes $" + salary + "/h.");
 WRITELN("If", name, "had been paid that much for his entire life, he would have already made $" + res + "!");
 WRITELN("Neg:", neg);
+WRITELN("Paren:", paren);

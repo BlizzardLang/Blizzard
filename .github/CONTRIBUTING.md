@@ -37,7 +37,7 @@ Please do the following to get your changes integrated:
 
 ## Note
 
-Your pull requests will be declined if they violate our [Code of Conduct](https://github.com/BLM16/Blizzard/blob/master/.github/CODE_OF_CONDUCT.md). You may be requested to make changes (or have others make changes) before we integrate them into our codebase. All .NET and CodeQL Analysis tests **must succeed** before we integrate the pull request.
+Your pull requests will be declined if they violate our [Code of Conduct](https://github.com/BLM16/Blizzard/blob/master/.github/CODE_OF_CONDUCT.md). You may be requested to make changes (or have others make changes) before we integrate them into our codebase. All github actions **must succeed** before we integrate the pull request.
 
 
 ## See Also
