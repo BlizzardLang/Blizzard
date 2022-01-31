@@ -1,0 +1,18 @@
+/*
+ * Example Blizzard file for debugging
+ */
+
+str name   = "John Smith"; // The person's name
+int age    = 34;           // The person's age
+dec salary = 42.15;        // The person's salary
+
+// Amount of money they would have made working at that rate their entire life
+dec res = age * 365.25 * 24 * salary;
+
+// Negative number test
+int neg = 3 + -5;
+
+/* Write out the data */
+WRITELN(name + " is " + age + " years old, and makes $" + salary + "/h.");
+WRITELN("If", name, "had been paid that much for his entire life, he would have already made $" + res + "!");
+WRITELN("Neg:", neg);
