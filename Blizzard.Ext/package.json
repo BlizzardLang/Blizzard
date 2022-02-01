@@ -1,0 +1,51 @@
+{
+    "name": "blizzard",
+    "displayName": "Blizzard",
+    "version": "1.0.0",
+    "description": "Blizzard is a programming language that aims for simplicity while maintaining readability.",
+    "publisher": "BLM16",
+    "author": {
+        "name": "Bradley Myers",
+        "url": "https://github.com/BLM16"
+    },
+    "engines": {
+        "vscode": "*"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "blizzard",
+        "language"
+    ],
+    "extensionKind": [
+        "ui",
+        "workspace"
+    ],
+    "icon": "assets/Blizzard_Icon_128x128.png",
+    "galleryBanner": {
+        "color": "#37b9db",
+        "theme": "dark"
+    },
+    "homepage": "https://github.com/BLM16/Blizzard",
+    "readme": "https://github.com/BLM16/Blizzard/blob/master/Blizzard.Ext/README.md",
+    "license": "LICENSE",
+    "bugs": "https://github.com/BLM16/Blizzard/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BLM16/Blizzard.git"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "blizzard",
+            "aliases": ["Blizzard", "bzz"],
+            "extensions": [".bzz"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "blizzard",
+            "scopeName": "source.bzz",
+            "path": "./syntaxes/blizzard.tmLanguage.json"
+        }]
+    }
+}

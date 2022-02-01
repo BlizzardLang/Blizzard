@@ -28,7 +28,7 @@ functionCall: IDENTIFIER '(' (expression (',' expression)*)? ')';
 
 TYPE: 'str' | 'int' | 'dec';                // The valid variable types
 STRING: '"' ~'"'* '"';                      // Matches a string literal
-INTEGER: '-'? [1-9][0-9]*;                  // Matches an integer literal
+INTEGER: '-'? [0-9]+;                       // Matches an integer literal
 DECIMAL: '-'? [0-9]* '.' [0-9]+;            // Matches a decimal literal
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;         // Name identifier for variables and functions

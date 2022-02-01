@@ -5,6 +5,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
+    <Company>BLM16</Company>
+    <Authors>BLM16</Authors>
+    <Copyright>Copyright (c) 2022 Bradley Myers. All rights reserved.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/BLM16/Blizzard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>blizzard; language</PackageTags>
+    <Description>Blizzard is a programming language that aims for simplicity while maintaining readability.</Description>
+    <Version>1.0.0</Version>
+    <PackageId>BLM16.Lang.$(AssemblyName)</PackageId>
+    <PackageLicenseFile>..\LICENSE</PackageLicenseFile>
+    <PackageIcon>Blizzard_Icon_128x128.png</PackageIcon>
+    <ApplicationIcon>Blizzard_Icon_128x128.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,6 +34,21 @@
 
   <ItemGroup>
     <Antlr4 Include="Grammar\blizzard.g4"></Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Blizzard_Icon_128x128.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\Blizzard_Icon_128x128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
