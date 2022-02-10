@@ -9,7 +9,7 @@
     <Authors>BLM16</Authors>
     <Copyright>Copyright (c) 2022 Bradley Myers. All rights reserved.</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/BLM16/Blizzard</RepositoryUrl>
+    <RepositoryUrl>https://github.com/BlizzardLang/Blizzard</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>blizzard; language</PackageTags>
     <Description>Blizzard is a programming language that aims for simplicity while maintaining readability.</Description>
