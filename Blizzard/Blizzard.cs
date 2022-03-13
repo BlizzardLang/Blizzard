@@ -7,24 +7,26 @@ class Blizzard
 {
     public static void Main(string[] args)
     {
-        #if DEBUG
-        var input = new AntlrFileStream("Grammar/example.bzz");
-        #else
-        if (args.Length == 0)
-        {
-            Console.WriteLine("Missing required argument `input`. Please specify a file to execute.");
-            return;
+#if DEBUG
+        // Use the default Grammar/example.bzz file in DEBUG mode if no options are specified
+        // Allows debugging in an IDE without building and running from the command line
+        if (args.Length == 0) {
+            args = new[] { "Grammar/example.bzz" };
         }
-        var input = new AntlrFileStream(args[0]);
-        #endif
+#endif
 
-        // Setup the lexer and parser
-        var lexer = new blizzardLexer(input);
-        var tokens = new CommonTokenStream(lexer);
-        var parser = new blizzardParser(tokens);
+        ArgumentParser.Register();
+        ArgumentParser.SetHandler((FileInfo inputFile) => {
+            // Setup the lexer and parser
+            var antlrInputFileStream = new AntlrFileStream(inputFile.FullName);
+            var lexer = new blizzardLexer(antlrInputFileStream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new blizzardParser(tokens);
 
-        // Visit the tree with the parsed input
-        var visitor = new BlizzardVisitor();
-        visitor.Visit(parser.program());
+            // Visit the tree with the parsed input
+            var visitor = new BlizzardVisitor();
+            visitor.Visit(parser.program());
+        });
+        ArgumentParser.Invoke(args);
     }
 }
