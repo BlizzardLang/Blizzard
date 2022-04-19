@@ -1,4 +1,8 @@
-﻿namespace Blizzard;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Blizzard;
 
 /// <summary>
 /// A blizzard function
