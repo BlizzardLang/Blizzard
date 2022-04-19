@@ -1,4 +1,6 @@
-﻿namespace Blizzard;
+﻿using System;
+
+namespace Blizzard;
 
 /// <summary>
 /// The type of variable
