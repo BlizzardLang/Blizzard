@@ -102,9 +102,11 @@ public class BlizzardParserTests
     [DataRow("WRITELN(\"Hello World! (With a new line)\")", "Hello World! (With a new line)\r\n")]
     public void TestFunctionCall_WRITE(string input, object expected)
     {
-        // Redirect stdout to sw to capture the write and writeln functions
-        var sw = new System.IO.StringWriter();
-        sw.NewLine = "\r\n"; // Set the line endings for consistent testing
+        // Redirect stdout to sw to capture the WRITE and WRITELN functions
+        var sw = new System.IO.StringWriter
+        {
+            NewLine = "\r\n" // Set the line endings for consistent testing
+        };
         Console.SetOut(sw);
 
         Visitor.Visit(GetParser(input).functionCall());
@@ -184,5 +186,20 @@ public class BlizzardParserTests
 
         Visitor.Visit(GetParser(input).program());
         Assert.AreEqual(expected, sw.ToString());
+    }
+
+    /// <summary>
+    /// Tests that negative numbers are correctly parsed
+    /// </summary>
+    /// <param name="input">The expression to parse</param>
+    /// <param name="expected">The expected parse result</param>
+    [DataTestMethod]
+    [DataRow("-7", -7)]
+    [DataRow("3 - -4", 7)]
+    [DataRow("6 + -2", 4)]
+    public void TestNegativeNumbersEvaluateCorrectly(string input, object expected)
+    {
+        var actual = Visitor.Visit(GetParser(input).expression());
+        Assert.AreEqual(expected, actual);
     }
 }
