@@ -58,7 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Grammar\example.bzz">
+    <None Update="Examples\john.bzz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
