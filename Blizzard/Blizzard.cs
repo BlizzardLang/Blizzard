@@ -7,7 +7,7 @@
 // Allows debugging in an IDE without building and running from the command line
 if (args.Length == 0)
 {
-    args = "run Grammar/example.bzz".Split();
+    args = "run Examples/emoji.bzz".Split();
 }
 #endif
 
